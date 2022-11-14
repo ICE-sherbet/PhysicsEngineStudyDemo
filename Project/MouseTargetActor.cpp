@@ -18,6 +18,7 @@ void MouseTargetActor::Start() {
     collision_->SetShape(shape);
     body_ = new PhysicsBodyComponent(this);
     body_->SetType(physics::BodyMotionType::kDynamic);
+    body_->SetGravityScale(0.0f);
   }
 }
 

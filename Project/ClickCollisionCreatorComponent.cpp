@@ -26,6 +26,7 @@ void ClickCollisionCreatorComponent::Start() {
     collision->SetShape(ground_);
     auto physics = new PhysicsBodyComponent(actor);
     physics->SetType(physics::BodyMotionType::kStatic);
+    physics->SetGravityScale(0.0f);
   }
 
   {
@@ -39,6 +40,7 @@ void ClickCollisionCreatorComponent::Start() {
     collision->SetShape(box_);
     auto physics = new PhysicsBodyComponent(actor);
     physics->SetType(physics::BodyMotionType::kDynamic);
+    physics->SetGravityScale(0.01f);
   }
 
       {
@@ -51,6 +53,7 @@ void ClickCollisionCreatorComponent::Start() {
     auto collision = new CollisionComponent(actor);
     collision->SetShape(box_);
     auto physics = new PhysicsBodyComponent(actor);
+    physics->SetGravityScale(0.01f);
     physics->SetType(physics::BodyMotionType::kDynamic);
   }
 

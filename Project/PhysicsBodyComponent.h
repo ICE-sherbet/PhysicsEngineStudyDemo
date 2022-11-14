@@ -12,12 +12,14 @@
 #include "CollisionComponent.h"
 #include "Component.h"
 #include "ComponentParameter.h"
+#include "PhysicsMath.h"
 #include "Vector.h"
 
 namespace base_engine {
 namespace physics {
+    class PhysicsIsland;
 
-/**
+    /**
  * \brief 動作種別
  */
 enum class BodyMotionType {
@@ -31,8 +33,12 @@ enum class BodyMotionType {
 }  // namespace physics
 
 class PhysicsBodyComponent final : public Component {
+  friend class physics::PhysicsIsland;
   physics::BodyMotionType motion_type_ = physics::BodyMotionType::kDynamic;
   Vector2 liner_velocity_;
+  float gravity_scale_ = 1.0f;
+  physics::PhysicsSweep sweep_{};
+
 
  public:
   PhysicsBodyComponent(Actor* owner,
@@ -49,6 +55,10 @@ class PhysicsBodyComponent final : public Component {
   void SetForceX(const Floating force) { liner_velocity_.x = force; }
   void SetForceY(const Floating force) { liner_velocity_.y = force; }
   Vector2 GetForce() { return liner_velocity_; }
+  [[nodiscard]] physics::PhysicsSweep GetSweep() const { return sweep_; }
+  [[nodiscard]] float GetGravityScale() const { return gravity_scale_; }
+  [[nodiscard]] physics::BodyMotionType GetType() const { return motion_type_; }
+
   void Update() override {
     if (motion_type_!=physics::BodyMotionType::kDynamic)return;
     //AddForce({0, 6});
@@ -56,7 +66,12 @@ class PhysicsBodyComponent final : public Component {
   }
   void SetType(physics::BodyMotionType type) { motion_type_ = type; }
 
- private:
+  void SetGravityScale(float gravity_scale)
+  {
+      gravity_scale_ = gravity_scale;
+  }
+
+private:
   void Solver(const physics::Manifold& manifold,
               const PhysicsBodyComponent* target_body) const;
 };

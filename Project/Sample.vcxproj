@@ -21,14 +21,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -121,6 +121,7 @@
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IShape.cpp" />
+    <ClCompile Include="PhysicsContactSolver.cpp" />
     <ClCompile Include="PhysicsGameSetup.cpp" />
     <ClCompile Include="PhysicsIsland.cpp" />
     <ClCompile Include="Point.cpp" />
@@ -196,8 +197,11 @@
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IShape.h" />
+    <ClInclude Include="PhysicsContactSolver.h" />
     <ClInclude Include="PhysicsGameSetup.h" />
     <ClInclude Include="PhysicsIsland.h" />
+    <ClInclude Include="PhysicsMath.h" />
+    <ClInclude Include="PhysicsTypes.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Pow.h" />
     <ClInclude Include="Rect.h" />

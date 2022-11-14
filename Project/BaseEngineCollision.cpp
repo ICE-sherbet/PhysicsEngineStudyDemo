@@ -3,11 +3,13 @@
 #include "CollisionComponent.h"
 #include "IShape.h"
 #include "PhysicsBodyComponent.h"
+#include "PhysicsIsland.h"
 
 namespace base_engine {
 BaseEngineCollision::~BaseEngineCollision() = default;
 
 void BaseEngineCollision::Collide() {
+  physics::PhysicsIsland island(body_list_.size());
   size_t body_size = body_list_.size();
   for (auto&& body_ : body_list_) {
     if (auto&& physics = body_->GetPhysicsBody()) {
@@ -17,7 +19,9 @@ void BaseEngineCollision::Collide() {
   }
   for (int body_a_index = 0; body_a_index < body_size; ++body_a_index) {
     const auto body_a = body_list_[body_a_index];
-
+    if (const auto body = body_a->GetPhysicsBody(); body) {
+      island.Add(body);
+    }
     for (int body_b_index = body_a_index + 1; body_b_index < body_size;
          ++body_b_index) {
       if (const auto body_b = body_list_[body_b_index];
@@ -30,6 +34,7 @@ void BaseEngineCollision::Collide() {
       }
     }
   }
+  island.Solve({0, 0.01}, false);
 }
 
 void BaseEngineCollision::Register(CollisionComponent* component) {

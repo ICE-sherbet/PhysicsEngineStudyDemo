@@ -46,9 +46,13 @@ class PhysicsBodyComponent final : public Component {
   void Start() override;
   void OnCollision(const SendManifold& manifold) override;
   void AddForce(InVector2 force) {
-    if (std::abs(liner_velocity_.y + force.y) < 30)
-      liner_velocity_.y += force.y;
-    if (std::abs(liner_velocity_.x + force.x) < 30)
+    if (std::abs(liner_velocity_.y + force.y) < 1)
+    {
+        liner_velocity_.y += force.y;
+      if (liner_velocity_.y > 1) liner_velocity_.y = 1;
+      if (liner_velocity_.y < -1) liner_velocity_.y = -1;
+    }
+    if (std::abs(liner_velocity_.x + force.x) < 3)
       liner_velocity_.x += force.x;
   }
   void SetForce(InVector2 force) { liner_velocity_ = force; }

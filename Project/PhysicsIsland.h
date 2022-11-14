@@ -84,6 +84,13 @@ class PhysicsIsland {
       body->sweep_.a = positions_[i].a;
       body->liner_velocity_.x = velocities_[i].v.x;
       body->liner_velocity_.y = velocities_[i].v.y;
+      if (body->liner_velocity_.y > 6)
+      {
+        body->liner_velocity_.y = 6;
+      }
+      if (body->liner_velocity_.y < -6) {
+        body->liner_velocity_.y = -6;
+      }
       body->owner_->SetPosition({body->sweep_.c.x, body->sweep_.c.y});
     }
   }

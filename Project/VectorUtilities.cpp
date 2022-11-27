@@ -12,6 +12,9 @@ Floating VectorUtilities::Cross(InVector2 a, InVector2 b) {
 Floating VectorUtilities::Length(InVector2 a)
 { return std::sqrt(Dot(a, a));
 }
+Floating VectorUtilities::LengthSquare(InVector2 a) {
+  return Dot(a, a);
+}
 
 Vector2 VectorUtilities::Normalize(InVector2 a)
 { return a / Length(a); }

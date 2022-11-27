@@ -42,7 +42,9 @@ class Rect final : public Mof::CRectangle, public IShape {
    */
   [[nodiscard]] Vector2 GetFarthestPoint(InVector2 transform,
                                          Vector2 direction) const override;
-
+  std::span<Vector2> GetVertices() const
+  { return vectors_;
+  }
   ShapeType GetType() const override { return ShapeType::kRect; }
 };
 }  // namespace base_engine

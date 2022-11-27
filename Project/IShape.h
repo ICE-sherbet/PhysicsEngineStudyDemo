@@ -1,7 +1,8 @@
 ﻿#pragma once
-#include <span>
 #include <Collision/Rectangle.h>
 #include <Math/Vector2.h>
+
+#include <span>
 
 #include "Vector.h"
 
@@ -13,14 +14,15 @@ class Point;
 enum class ShapeType { kNone, kRect, kCircle, kPoint };
 class IShape {
  protected:
-    static Vector2 FindFurthestPoint(const std::span<Vector2> vertices,
-                                     Vector2 direction)
-    {
+  static Vector2 FindFurthestPoint(const std::span<Vector2> vertices,
+                                   Vector2 direction) {
     Vector2 maxPoint;
     float maxDistance = -FLT_MAX;
 
     for (const auto& vertex : vertices) {
-        if (const float distance = vertex.x * direction.x + vertex.y * direction.y; distance > maxDistance) {
+      if (const float distance =
+              vertex.x * direction.x + vertex.y * direction.y;
+          distance > maxDistance) {
         maxDistance = distance;
         maxPoint = vertex;
       }
@@ -55,5 +57,24 @@ class IShape {
   virtual Mof::CRectangle AABB() const = 0;
   virtual ShapeType GetType() const = 0;
   virtual void ChangeNotification() = 0;
+
+  static size_t FindFurthestIndex(InVector2 transform,
+                                  const std::span<Vector2> vertices,
+                                  InVector2 direction) {
+    size_t maxIndex;
+    float maxDistance = -FLT_MAX;
+    for (int i = 0; i < vertices.size(); ++i) {
+      auto vertex = vertices[i];
+      vertex += transform;
+      if (const float distance =
+              vertex.x * direction.x + vertex.y * direction.y;
+          distance > maxDistance) {
+        maxDistance = distance;
+        maxIndex = i;
+      }
+    }
+
+    return maxIndex;
+  }
 };
 }  // namespace base_engine

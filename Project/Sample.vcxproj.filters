@@ -327,11 +327,8 @@
     <ClCompile Include="ClickCollisionCreatorComponent.cpp">
       <Filter>ソース ファイル\GameMain\Setup</Filter>
     </ClCompile>
-    <ClCompile Include="PhysicsIsland.cpp">
-      <Filter>BaseEngine\physics\Solve</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsContactSolver.cpp">
-      <Filter>BaseEngine\physics\Solve</Filter>
+    <ClCompile Include="ClipUtilities.cpp">
+      <Filter>BaseEngine\physics\Collision\CollisionDetector\GJK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -578,17 +575,17 @@
     <ClInclude Include="ClickCollisionCreatorComponent.h">
       <Filter>ソース ファイル\GameMain\Setup</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicsIsland.h">
-      <Filter>BaseEngine\physics\Solve</Filter>
-    </ClInclude>
     <ClInclude Include="PhysicsTypes.h">
       <Filter>BaseEngine\physics</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsMath.h">
       <Filter>BaseEngine\physics\Math</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicsContactSolver.h">
+    <ClInclude Include="Contact.h">
       <Filter>BaseEngine\physics\Solve</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipUtilities.h">
+      <Filter>BaseEngine\physics\Collision\CollisionDetector\GJK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

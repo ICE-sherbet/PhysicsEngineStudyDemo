@@ -17,6 +17,7 @@ class VectorUtilities {
   static Floating Dot(InVector2 a, InVector2 b);
   static Floating Cross(InVector2 a, InVector2 b);
   static Floating Length(InVector2 a);
+  static Floating LengthSquare(InVector2 a);
   static Vector2 Normalize(InVector2 a);
   static Vector2 TripleProduct(InVector2 a, InVector2 b, InVector2 c);
 

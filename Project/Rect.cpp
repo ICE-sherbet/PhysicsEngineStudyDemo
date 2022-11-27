@@ -10,9 +10,11 @@
 namespace base_engine {
     Rect::Rect(const CRectangle& pObj): CRectangle(pObj) { ChangeNotification(); }
 
-    void Rect::ChangeNotification()
-    {
-        int n = 0;
+    void Rect::ChangeNotification() {
+      vectors_[0] = GetTopLeft();
+      vectors_[1] = GetTopRight();
+      vectors_[2] = GetBottomRight();
+      vectors_[3] = GetBottomLeft();
     }
 
     Mof::CRectangle Rect::AABB() const
@@ -20,10 +22,6 @@ namespace base_engine {
 
     Vector2 Rect::GetFarthestPoint(InVector2 transform, Vector2 direction) const
     {
-      vectors_[0] = GetTopLeft() + transform;
-      vectors_[1] = GetTopRight() + transform;
-      vectors_[2] = GetBottomRight() + transform;
-      vectors_[3] = GetBottomLeft() + transform;
       return FindFurthestPoint(vectors_, direction);
     }
 

@@ -21,7 +21,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -98,6 +98,7 @@
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="ClickCollisionCreatorComponent.cpp" />
+    <ClCompile Include="ClipUtilities.cpp" />
     <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="EpaSolver.cpp" />
@@ -121,9 +122,7 @@
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IShape.cpp" />
-    <ClCompile Include="PhysicsContactSolver.cpp" />
     <ClCompile Include="PhysicsGameSetup.cpp" />
-    <ClCompile Include="PhysicsIsland.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
@@ -153,11 +152,13 @@
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="ClickCollisionCreatorComponent.h" />
+    <ClInclude Include="ClipUtilities.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="CollisionLayer.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentParameter.h" />
     <ClInclude Include="ConnectDotUpdateOrder.h" />
+    <ClInclude Include="Contact.h" />
     <ClInclude Include="FrozenConcept.h" />
     <ClInclude Include="FrozenHelper.h" />
     <ClInclude Include="FrozenMacro.h" />
@@ -197,9 +198,7 @@
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IShape.h" />
-    <ClInclude Include="PhysicsContactSolver.h" />
     <ClInclude Include="PhysicsGameSetup.h" />
-    <ClInclude Include="PhysicsIsland.h" />
     <ClInclude Include="PhysicsMath.h" />
     <ClInclude Include="PhysicsTypes.h" />
     <ClInclude Include="Point.h" />

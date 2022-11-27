@@ -30,7 +30,23 @@ class IShape {
 
     return maxPoint;
   }
+  static Vector2 FindFurthestPoint(InVector2 transform ,const std::span<Vector2> vertices,
+                                   Vector2 direction) {
+    Vector2 maxPoint;
+    float maxDistance = -FLT_MAX;
 
+    for (auto vertex : vertices) {
+      vertex += transform; 
+      if (const float distance =
+              vertex.x * direction.x + vertex.y * direction.y;
+          distance > maxDistance) {
+        maxDistance = distance;
+        maxPoint = vertex;
+      }
+    }
+
+    return maxPoint;
+  }
  public:
   virtual ~IShape();
 

@@ -11,14 +11,15 @@ void base_engine::PhysicsBodyComponent::Start() {
   const auto collider = owner_->GetComponent<CollisionComponent>();
   if (collider.expired()) return;
   collider.lock()->SetPhysicsBody(this);
-  mass_ = FLT_MAX;
-  inv_mass_ = 0.0f;
-  i_ = FLT_MAX;
-  inv_i_ = 0.0f;
+  mass_ = GetType() == physics::BodyMotionType::kDynamic ? 10 : FLT_MAX;
+  inv_mass_ = GetType() == physics::BodyMotionType::kDynamic ? 1.0f / mass_ : 0.000f;
+  inv_i_ = GetType() == physics::BodyMotionType::kDynamic ? 1.0f / i_  : 0.000f;
 }
 using enum base_engine::physics::BodyMotionType;
 void base_engine::PhysicsBodyComponent::OnCollision(
     const SendManifold& manifold) {
+  return;
+
   const auto this_collision = manifold.collision_a;
   const auto target_collision = manifold.collision_b;
   if (motion_type_ != kDynamic) return;
@@ -37,7 +38,7 @@ void base_engine::PhysicsBodyComponent::OnCollision(
 }
 
 void base_engine::PhysicsBodyComponent::Solver(
-    const physics::Manifold& manifold,
+    const physics::EpaManifold& manifold,
     const PhysicsBodyComponent* target_body) const {
   if (target_body == nullptr) {
     owner_->Translation({manifold.normal * -manifold.depth});

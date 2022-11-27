@@ -10,7 +10,7 @@
 #include <vector>
 
 #include "EpaSolver.h"
-#include "Manifold.h"
+#include "EpaManifold.h"
 #include "MinkowskiSum.h"
 
 
@@ -18,7 +18,7 @@ namespace base_engine::physics::detector {
 using Simplex = std::vector<Vector2>;
 class Gjk {
  public:
-  static Manifold Detect(const IShape& shape1, InVector2 transform1,
+  static EpaManifold Detect(const IShape& shape1, InVector2 transform1,
                          const IShape& shape2, InVector2 transform2) {
     if (shape1.GetType() == ShapeType::kCircle &&
         shape2.GetType() == ShapeType::kCircle) {
@@ -29,7 +29,7 @@ class Gjk {
         shape2.GetType() == ShapeType::kRect) {
       if (!shape1.Collision(transform1,&shape2,transform2))
       {
-        return Manifold();
+        return EpaManifold();
       }
     }
     Simplex simplex;
@@ -41,7 +41,7 @@ class Gjk {
       return EpaSolver::FindManifold(simplex, minkowski_sum);
     }
 
-    return Manifold();
+    return EpaManifold();
   }
 
   static Vector2 CalcInitialDirection(const IShape& shape1,
@@ -81,7 +81,7 @@ class Gjk {
     }
   }
 
-  static Manifold DetectCircle(const base_engine::IShape& shape1, InVector2 transform1,
+  static EpaManifold DetectCircle(const base_engine::IShape& shape1, InVector2 transform1,
                                const base_engine::IShape& shape2,
                                InVector2 transform2);
   /**

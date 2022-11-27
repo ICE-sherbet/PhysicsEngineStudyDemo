@@ -24,8 +24,9 @@ void MouseTargetActor::Start() {
 
 void MouseTargetActor::Input()
 {
-    this->SetPosition(input_->MousePosition());
-
+//    this->SetPosition(input_->MousePosition());
+  body_->SetForce(input_->MousePosition() - GetPosition());
+  return;
     if (input_->JumpFire() )
     {
       shape_type++;

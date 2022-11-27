@@ -18,7 +18,7 @@ IShape* CollisionComponent::GetShape() const { return shape_.get(); }
 void CollisionComponent::SetShape(const std::shared_ptr<IShape>& shape) {
   shape_ = shape;
 }
-physics::Manifold CollisionComponent::Collision(
+physics::EpaManifold CollisionComponent::Collision(
     const CollisionComponent* target) const {
   return physics::detector::Gjk::Detect(
       *GetShape(), GetPosition(), *target->GetShape(), target->GetPosition());

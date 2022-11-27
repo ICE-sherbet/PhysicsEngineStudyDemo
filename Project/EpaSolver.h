@@ -7,16 +7,16 @@
 
 #pragma once
 #include "ExpandingSimplex.h"
-#include "Manifold.h"
+#include "EpaManifold.h"
 #include "MinkowskiSum.h"
 
 namespace base_engine::physics::detector {
 constexpr size_t kMaxIterations = 100;
 class EpaSolver {
  public:
-  static Manifold FindManifold(const std::vector<Vector2>& simplex,
+  static EpaManifold FindManifold(const std::vector<Vector2>& simplex,
                                const MinkowskiSum& support) {
-    Manifold result;
+    EpaManifold result;
     ExpandingSimplex expandingSimplex(simplex);
     std::shared_ptr<ExpandingSimplexEdge> edge;
     Vector2 point;
@@ -28,14 +28,14 @@ class EpaSolver {
       const float projection = VectorUtilities::Dot(point, edge->GetNormal());
       if ((projection - edge->GetDistance()) <
           std::numeric_limits<float>::epsilon()) {
-        return Manifold(edge->GetPoint1(), edge->GetPoint2(), edge->GetNormal(),
+        return EpaManifold(edge->GetPoint1(), edge->GetPoint2(), edge->GetNormal(),
                         projection);
       }
 
       expandingSimplex.expand(point);
     }
 
-    return Manifold(edge->GetPoint1(), edge->GetPoint2(), edge->GetNormal(),
+    return EpaManifold(edge->GetPoint1(), edge->GetPoint2(), edge->GetNormal(),
                     VectorUtilities::Dot(point, edge->GetNormal()));
   }
 };

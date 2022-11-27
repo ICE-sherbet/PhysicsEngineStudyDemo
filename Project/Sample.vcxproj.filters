@@ -279,7 +279,7 @@
     <ClCompile Include="EpaSolver.cpp">
       <Filter>BaseEngine\physics\Collision\CollisionDetector\GJK\Solver</Filter>
     </ClCompile>
-    <ClCompile Include="Manifold.cpp">
+    <ClCompile Include="EpaManifold.cpp">
       <Filter>BaseEngine\physics\Collision\CollisionDetector\GJK</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsBodyComponent.cpp">
@@ -446,7 +446,7 @@
     <ClInclude Include="EpaSolver.h">
       <Filter>BaseEngine\physics\Collision\CollisionDetector\GJK\Solver</Filter>
     </ClInclude>
-    <ClInclude Include="Manifold.h">
+    <ClInclude Include="EpaManifold.h">
       <Filter>BaseEngine\physics\Collision\CollisionDetector\GJK</Filter>
     </ClInclude>
     <ClInclude Include="MinkowskiSum.h">

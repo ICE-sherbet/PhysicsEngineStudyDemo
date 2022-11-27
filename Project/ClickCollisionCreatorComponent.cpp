@@ -7,8 +7,9 @@
 
 using namespace base_engine;
 
-void ClickCollisionCreatorComponent::SetInput(InputManager* input)
-{ input_ = input; }
+void ClickCollisionCreatorComponent::SetInput(InputManager* input) {
+  input_ = input;
+}
 
 void ClickCollisionCreatorComponent::Start() {
   shape_ = std::make_shared<base_engine::Circle>(0, 0, 10);
@@ -29,9 +30,10 @@ void ClickCollisionCreatorComponent::Start() {
     physics->SetGravityScale(0.0f);
   }
 
+  for (int i = 0; i < 3; ++i)
   {
     auto actor = new Actor(this->owner_->GetGame());
-    actor->SetPosition({100, 200});
+    actor->SetPosition({300 + 100.0f*i, 400});
     auto shape_render = new ShapeRenderComponent(actor, 100);
     shape_render->SetShape(box_);
     shape_render->SetFillMode(base_engine::FillMode::No)
@@ -42,10 +44,22 @@ void ClickCollisionCreatorComponent::Start() {
     physics->SetType(physics::BodyMotionType::kDynamic);
     physics->SetGravityScale(0.01f);
   }
-
-      {
+  for (int i = 0; i < 2; ++i) {
     auto actor = new Actor(this->owner_->GetGame());
-    actor->SetPosition({500, 300});
+    actor->SetPosition({350 + 100.0f * i, 300});
+    auto shape_render = new ShapeRenderComponent(actor, 100);
+    shape_render->SetShape(box_);
+    shape_render->SetFillMode(base_engine::FillMode::No)
+        .SetColor(MOF_COLOR_BLUE);
+    auto collision = new CollisionComponent(actor);
+    collision->SetShape(box_);
+    auto physics = new PhysicsBodyComponent(actor);
+    physics->SetType(physics::BodyMotionType::kDynamic);
+    physics->SetGravityScale(0.01f);
+  }
+  {
+    auto actor = new Actor(this->owner_->GetGame());
+    actor->SetPosition({500, 0});
     auto shape_render = new ShapeRenderComponent(actor, 100);
     shape_render->SetShape(box_);
     shape_render->SetFillMode(base_engine::FillMode::No)
@@ -56,7 +70,6 @@ void ClickCollisionCreatorComponent::Start() {
     physics->SetGravityScale(0.01f);
     physics->SetType(physics::BodyMotionType::kDynamic);
   }
-
 }
 
 void ClickCollisionCreatorComponent::ProcessInput() {
@@ -66,6 +79,8 @@ void ClickCollisionCreatorComponent::ProcessInput() {
 }
 
 void ClickCollisionCreatorComponent::PhysicsColliderCreate() {
+  return;
+
   auto actor = new Actor(this->owner_->GetGame());
   Vector2 pos;
   g_pInput->GetMousePos(pos);

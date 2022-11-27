@@ -3,7 +3,7 @@
 #include "Circle.h"
 
 namespace base_engine::physics::detector {
-Manifold Gjk::DetectCircle(const IShape& shape1, InVector2 transform1,
+EpaManifold Gjk::DetectCircle(const IShape& shape1, InVector2 transform1,
                            const IShape& shape2, InVector2 transform2) {
   const auto circle1 = static_cast<const Circle&>(shape1);
   const auto circle2 = static_cast<const Circle&>(shape2);
@@ -14,8 +14,8 @@ Manifold Gjk::DetectCircle(const IShape& shape1, InVector2 transform1,
   if (const float mag = VectorUtilities::Length(v),
       radii = circle1.r + circle2.r;
       mag < radii) {
-    return Manifold(c1, c2, VectorUtilities::Normalize(v), radii - mag);
+    return EpaManifold(c1, c2, VectorUtilities::Normalize(v), radii - mag);
   }
-  return Manifold{};
+  return EpaManifold{};
 }
 }  // namespace base_engine::physics::detector

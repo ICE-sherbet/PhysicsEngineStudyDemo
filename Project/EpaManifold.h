@@ -1,4 +1,4 @@
-﻿// @file Manifold.h
+﻿// @file EpaManifold.h
 // @brief 各コリジョンの衝突深度などを求める
 // @author ICE
 // @date 2022/08/17
@@ -8,17 +8,32 @@
 #pragma once
 #include <array>
 
+#include "ClipUtilities.h"
 #include "Vector.h"
 #include "VectorUtilities.h"
+
+namespace base_engine
+{
+    class CollisionComponent;
+}
 
 namespace base_engine::physics {
 
 constexpr size_t kMaxManifoldPoints = 2;
 using CollisionPoints = std::array<Vector2, kMaxManifoldPoints>;
+struct Collision {
+  bool isColliding = false;
+  CollisionComponent* bodyA = nullptr;
+  CollisionComponent* bodyB = nullptr;
+  std::vector<PointPair> contactList;
+  Vector2 normal;
+  float depth = 0;
+};
+
 /**
- * \brief 当たり判定情報
+ * \brief 当たり仮判定情報
  */
-struct Manifold {
+struct EpaManifold {
   /**
    * \brief 接触点
    */
@@ -33,9 +48,9 @@ struct Manifold {
   Floating depth = 0;
   bool has_collision = false;
 
-  explicit Manifold() = default;
+  explicit EpaManifold() = default;
 
-  explicit Manifold(InVector2 a, InVector2 b)
+  explicit EpaManifold(InVector2 a, InVector2 b)
       : points({a, b}), has_collision(true) {
     Vector2 ba = a - b;
     depth = VectorUtilities::Length(ba);
@@ -46,7 +61,7 @@ struct Manifold {
       depth = 1;
     }
   }
-  explicit Manifold(InVector2 a, InVector2 b, InVector2 n, const float d)
+  explicit EpaManifold(InVector2 a, InVector2 b, InVector2 n, const float d)
       : points({a, b}), normal(n), depth(d), has_collision(true) {}
 };
 

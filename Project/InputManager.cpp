@@ -10,6 +10,12 @@ inline Mof::Vector2 GetMousePos() {
   g_pInput->GetMousePos(result);
   return result;
 };
+
+inline Mof::Vector2 GetMouseMove() {
+  Vector2 result;
+  g_pInput->GetMouseMove(result.x,result.y);
+  return result;
+};
 InputManager::InputManager(base_engine::InputActor* owner)
     : InputComponent(owner) {}
 
@@ -31,6 +37,7 @@ void InputManager::ProcessInput() {
   pause_fire_ = IsKeyPush(MOFKEY_ESCAPE);
   sneak_fire_ = IsKeyHold(MOFKEY_LSHIFT) || IsKeyHold(MOFKEY_RSHIFT);
   mouse_position_ = GetMousePos();
+  mouse_move_ = GetMouseMove();
 }
 
 void InputManager::Update() {}

@@ -112,7 +112,7 @@
     <ClCompile Include="IBaseEngineTexture.cpp" />
     <ClCompile Include="IBaseEngineEmpty.cpp" />
     <ClCompile Include="Geometry2D.ipp" />
-    <ClCompile Include="Manifold.cpp" />
+    <ClCompile Include="EpaManifold.cpp" />
     <ClCompile Include="MofSpriteAnimationComponent.cpp" />
     <ClCompile Include="MouseTargetActor.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -190,7 +190,7 @@
     <ClInclude Include="include\utilities\observable\Subject.h" />
     <ClInclude Include="include\utilities\observable\Unit.h" />
     <ClInclude Include="ISpriteAnimationComponent.h" />
-    <ClInclude Include="Manifold.h" />
+    <ClInclude Include="EpaManifold.h" />
     <ClInclude Include="MinkowskiSum.h" />
     <ClInclude Include="MofSpriteAnimationComponent.h" />
     <ClInclude Include="PhysicsBodyComponent.h" />

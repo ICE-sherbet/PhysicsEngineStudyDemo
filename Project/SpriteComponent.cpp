@@ -14,10 +14,7 @@ SpriteComponent::SpriteComponent(Actor* owner, int draw_order)
       mFlashTime(0.0f) {}
 
 SpriteComponent::~SpriteComponent()
-{ if (draw_order_==120)
-{
-    int n = 3;
-  }
+{ 
 }
 
 SpriteComponent& SpriteComponent::SetImage(Mof::LPTexture img) {
